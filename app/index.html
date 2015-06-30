@@ -25,7 +25,7 @@
         <ul class="nav nav-pills pull-right">
           <li ui-sref-active="active"><a ui-sref="main">Home</a></li>
           <li ui-sref-active="active"><a ui-sref="about">About</a></li>
-          <li ui-sref-active="active"><a ui-sref="contact">Contact</a></li>
+          <li ui-sref-active="active"><a ui-sref="login">Login</a></li>
         </ul>
         <h3 class="text-muted">Tooltip Editor</h3>
       </div>
@@ -75,8 +75,10 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
+        <script scr="scripts/services/auth.service.js"></script>
+        <script src="scripts/controllers/main.controller.js"></script>
+        <script src="scripts/controllers/login.controller.js"></script>
+        <script src="scripts/controllers/about.controller.js"></script>
         <!-- endbuild -->
 </body>
 </html>

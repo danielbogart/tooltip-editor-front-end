@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name tooltipEditorFrontEndApp.controller:AboutCtrl
+ * @name tooltipEditorFrontEndApp.controller:AboutController
  * @description
- * # AboutCtrl
+ * # AboutController
  * Controller of the tooltipEditorFrontEndApp
  */
 angular.module('tooltipEditorFrontEndApp')
-  .controller('AboutCtrl', function ($scope) {
+  .controller('AboutController', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

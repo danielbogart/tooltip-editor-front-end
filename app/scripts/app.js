@@ -19,7 +19,7 @@ angular
     'ui.router',
     'restangular'
   ])
-  .config(function($stateProvider, $urlRouterProvider, RestangularProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $windowProvider, RestangularProvider) {
 
     // For any unmatched url, redirect to /portfolio
     $urlRouterProvider.otherwise('/main');
@@ -29,12 +29,17 @@ angular
     .state('main', {
       url: '/main',
       templateUrl: 'views/main.html',
-      controller: 'MainCtrl',
+      controller: 'MainController',
     })
     .state('about', {
       url: '/about',
       templateUrl: 'views/about.html',
-      controller: 'AboutCtrl',
+      controller: 'AboutController',
+    })
+    .state('login', {
+      url: '/login',
+      templateUrl: 'views/login.html',
+      controller: 'LoginController',
     })
     .state('contact', {
       url: '/contact',
