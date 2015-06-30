@@ -16,9 +16,10 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ui.router'
+    'ui.router',
+    'restangular'
   ])
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider, RestangularProvider) {
 
     // For any unmatched url, redirect to /portfolio
     $urlRouterProvider.otherwise('/main');
@@ -39,4 +40,15 @@ angular
       url: '/contact',
       templateUrl: 'views/contact.html',
     });
+
+    RestangularProvider.setBaseUrl('http://localhost:3000');
+
+    RestangularProvider.setRequestInterceptor(function(elem, operation, what) {
+
+      if (operation === 'put') {
+        elem._id = undefined;
+        return elem;
+      }
+      return elem;
+    })
   });
