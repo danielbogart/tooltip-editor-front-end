@@ -29,17 +29,17 @@ angular
     .state('main', {
       url: '/main',
       templateUrl: 'views/main.html',
-      controller: 'MainController',
+      controller: 'mainController',
     })
     .state('about', {
       url: '/about',
       templateUrl: 'views/about.html',
-      controller: 'AboutController',
+      controller: 'aboutController',
     })
     .state('login', {
       url: '/login',
       templateUrl: 'views/login.html',
-      controller: 'LoginController',
+      controller: 'loginController',
     })
     .state('contact', {
       url: '/contact',
@@ -56,4 +56,10 @@ angular
       }
       return elem;
     })
+  })
+  .run(function($rootScope, $state){
+    $rootScope.$on('unauthorized', function() {
+      // main.currentUser = UserService.setCurrentUser(null);
+      $state.go('login');
+    });
   });

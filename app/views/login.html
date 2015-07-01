@@ -1,8 +1,15 @@
 <form ng-submit="submit()">
-    Enter username and password and hit enter:
-    <input type="text" ng-model="username" name="username" />
-    <input type="password" ng-model="password" name="password" />
-    <input type="submit" id="submit" value="Submit" />
-    <br><br>
-    <pre>username={{username}} password={{password}}</pre>
+  <div class="col-md-8 col-md-offset-2">
+    <div class="row">
+      <div class="form-group">
+        <input class="form-control" type="text" ng-model="username" placeholder="username" />
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="password" ng-model="password" placeholder="password" />
+      </div>
+      <div class="form-group">
+        <input type="submit" id="submit" value="Submit" class="btn btn-md btn-default"/>
+      </div>
+    </div>
+  </div>
 </form>

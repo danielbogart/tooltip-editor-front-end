@@ -2,24 +2,15 @@
 
 'use strict';
 
-/**
- * @ngdoc function
- * @name tooltipEditorFrontEndApp.controller:MainController
- * @description
- * # MainController
- * Controller of the tooltipEditorFrontEndApp
- */
   angular
     .module('tooltipEditorFrontEndApp')
-    .controller('MainController', MainController);
+    .controller('mainController', mainController);
 
-    MainController.$inject = ['$scope', '$window', 'Restangular', 'AuthService'];
+    mainController.$inject = ['$scope', '$window', 'Restangular'];
 
-    function MainController($scope, $window, Restangular, AuthService) {
+    function mainController($scope, $window, Restangular) {
 
       var test;
-
-      AuthService.setAuthHeader();
 
       test = Restangular.all('states');
 
