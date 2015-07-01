@@ -21,16 +21,8 @@
 
     <!-- Add your site or application content here -->
     <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li ui-sref-active="active"><a ui-sref="main">Home</a></li>
-          <li ui-sref-active="active"><a ui-sref="about">About</a></li>
-          <li ui-sref-active="active"><a ui-sref="login">Login</a></li>
-        </ul>
-        <h3 class="text-muted">Tooltip Editor</h3>
-      </div>
-
-      <div ui-view=""></div>
+      <div ui-view="header"></div>
+      <div ui-view="container"></div>
 
       <div class="footer col-md-12">
         <p><span class="glyphicon glyphicon-heart"></span> from the Advera Health team</p>
@@ -75,7 +67,13 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+
+        <!-- services -->
         <script src="scripts/services/auth.interceptor.service.js"></script>
+        <script src="scripts/services/auth.loggedin.service.js"></script>
+
+        <!-- controllers -->
+        <script scr="scripts/controllers/header.controller.js"></script>
         <script src="scripts/controllers/main.controller.js"></script>
         <script src="scripts/controllers/login.controller.js"></script>
         <script src="scripts/controllers/about.controller.js"></script>

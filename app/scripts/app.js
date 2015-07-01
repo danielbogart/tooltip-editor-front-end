@@ -22,28 +22,57 @@ angular
   .config(function($stateProvider, $urlRouterProvider, $windowProvider, RestangularProvider) {
 
     // For any unmatched url, redirect to /portfolio
-    $urlRouterProvider.otherwise('/main');
+    $urlRouterProvider.otherwise('/login');
 
     // States
     $stateProvider
-    .state('main', {
+    .state('root',{
+      url: '',
+      abstract: true,
+      views: {
+        'header': {
+          templateUrl: 'views/header.html',
+          controller: 'headerController'
+        }
+      }
+    })
+    .state('root.main', {
       url: '/main',
-      templateUrl: 'views/main.html',
-      controller: 'mainController',
+      views: {
+        'container@': {
+          templateUrl: 'views/main.html',
+          controller: 'mainController',
+        }
+      },
+      data: {
+        requiredAuthentication: true
+      },
     })
-    .state('about', {
+    .state('root.about', {
       url: '/about',
-      templateUrl: 'views/about.html',
-      controller: 'aboutController',
+      views: {
+        'container@': {
+          templateUrl: 'views/about.html',
+          controller: 'aboutController',
+        }
+      }
     })
-    .state('login', {
+    .state('root.login', {
       url: '/login',
-      templateUrl: 'views/login.html',
-      controller: 'loginController',
+      views: {
+        'container@': {
+          templateUrl: 'views/login.html',
+          controller: 'loginController',
+        }
+      }
     })
-    .state('contact', {
+    .state('root.contact', {
       url: '/contact',
-      templateUrl: 'views/contact.html',
+      views: {
+        'container@': {
+          templateUrl: 'views/contact.html',
+        }
+      }
     });
 
     RestangularProvider.setBaseUrl('http://localhost:3000');
@@ -57,9 +86,25 @@ angular
       return elem;
     })
   })
-  .run(function($rootScope, $state){
-    $rootScope.$on('unauthorized', function() {
-      // main.currentUser = UserService.setCurrentUser(null);
-      $state.go('login');
-    });
-  });
+  .run(Run);
+
+    Run.$inject=['$rootScope','$state', 'loggedInService'];
+
+      function Run($rootScope, $state, loggedInService) {
+        $rootScope.$on('$stateChangeStart', function (e, toState) {
+
+          if (!(toState.data)) {
+            return;
+          }
+          if (!(toState.data.requiredAuthentication)){
+            return;
+          }
+          var _requiredAuthentication = toState.data.requiredAuthentication;
+          if (_requiredAuthentication && !loggedInService.checkUser()) {
+              e.preventDefault();
+              $state.go('root.login', {notify: false});
+              alert('please log in first');
+          }
+          return;
+        });
+      }

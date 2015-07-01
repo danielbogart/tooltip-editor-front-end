@@ -64,7 +64,7 @@
         }
 
         function handleRequestError(rejection) {
-          $injector.get('$state').transitionTo('login');
+          $injector.get('$state').transitionTo('root.login');
           console.log('requestError');
           // do something on error
           return $q.reject(rejection);
