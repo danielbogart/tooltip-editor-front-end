@@ -6,16 +6,23 @@
     .module('tooltipEditorFrontEndApp')
     .controller('mainController', mainController);
 
-    mainController.$inject = ['$scope', '$window', 'Restangular'];
+    mainController.$inject = ['$scope', '$window', '$rootScope', 'Restangular'];
 
-    function mainController($scope, $window, Restangular) {
+    function mainController($scope, $window, $rootScope, Restangular) {
 
-      var test;
+      var stateList;
+      stateList = Restangular.all('states');
 
-      test = Restangular.all('states');
+      function getStateList() {
+        stateList.getList().then(function(states) {
+          $scope.states = Restangular.stripRestangular(states);
+        });
+      }
 
-      test.getList().then(function(states) {
-        $scope.states = Restangular.stripRestangular(states);
+      getStateList();
+
+      $rootScope.$on('newtip', function(event, args) {
+        getStateList();
       });
     }
 
