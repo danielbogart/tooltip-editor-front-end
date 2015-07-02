@@ -6,11 +6,14 @@
     .module('tooltipEditorFrontEndApp')
     .controller('headerController', headerController);
 
-    headerController.$inject = ['$scope'];
+    headerController.$inject = ['$scope', 'loggedInService'];
 
-    function headerController($scope) {
+    function headerController($scope, loggedInService) {
 
-      $scope.test = 'test';
+      $scope.loggedIn = loggedInService.checkUser();
+      $scope.logOut = function() {
+        loggedInService.logOut();
+      }
 
     }
 

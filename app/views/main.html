@@ -1,13 +1,82 @@
-<div class="jumbotron">
-  <div class="row marketing">
-    <div ng-repeat="state in states">
-      <div><u>{{state.name}} Tooltips</u></div>
-      <div ng-repeat="tooltip in state.tooltips">
-        <div><b>{{tooltip.term}}:</b>
-          <span> {{tooltip.definition}}</span>
-        </div>
+<div class="col-md-12">
+  <div class="row">
+    <div class="form-group col-md-6">
+      <input class="form-control" placeholder="search tooltip" type="text" ng-model="searchText" />
+    </div>
+
+    <!-- modal -->
+    <div ng-controller="ModalDemoCtrl">
+      <script type="text/ng-template" id="myModalContent.html">
+
+          <div class="modal-header">
+              <h3 class="modal-title">Create a Tooltip</h3>
+          </div>
+
+          <div class="modal-body">
+
+              <div class="form-group">
+
+                <div class="modal-row">
+                  <div ng-controller="DropdownCtrl">
+                    <div class="btn-group" dropdown is-open="status.isopen">
+                      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                        {{ selectedState || "Tooltip Module" }} <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li ng-repeat="state in states"><a class="pointer-link" ng-click="selectState(state.name)">{{state.name}}</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal-row">
+                  <input class="form-control" type="text" ng-model="tooltipName" placeholder="term" required="true" />
+                </div>
+
+                <div class="modal-row">
+                  <textarea class="form-control" type="password" ng-model="tooltipDefinition" placeholder="definition" required="true" />
+                </div>
+
+              </div>
+
+          </div>
+
+          <div class="modal-footer">
+              <button class="btn btn-success" ng-click="ok()">Create</button>
+              <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+          </div>
+
+      </script>
+      <div class="col-md-6">
+        <button class="btn btn-md btn-success" ng-click="open('sm')">Add Tooltip</button>
       </div>
-      <br>
+    </div>
+    <!-- modal end -->
+
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div ng-repeat="state in states">
+    <div ng-if="state.tooltips[0]" class="panel panel-primary">
+      <!-- Default panel contents -->
+      <div class="panel-heading">{{state.name}} Tooltips</div>
+
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <th>Term</th>
+          <th>Definition</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="tooltip in state.tooltips | filter:searchText">
+            <td class="col-md-3">{{tooltip.term}}</td>
+            <td class="col-md-8">{{tooltip.definition}}</td>
+            <td class="col-md-1"><i class="fa fa-trash-o"></i></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

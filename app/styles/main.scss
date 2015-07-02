@@ -73,7 +73,9 @@ body {
   .container {
     max-width: 730px;
   }
-
+  .modal-sm {
+    width: 500px;
+  }
   /* Remove the padding we set earlier */
   .header,
   .marketing,
@@ -89,4 +91,11 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+.pointer-link {
+  cursor: pointer;
+}
+.modal-row {
+  margin: 10px 0px 10px 0px;
 }

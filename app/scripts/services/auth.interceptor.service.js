@@ -16,23 +16,9 @@
         return {
           request: addToken,
           requestError: handleRequestError,
-          responseError: handleResponseError,
-          setCurrentUser: setCurrentUser,
-          getCurrentUser: getCurrentUser
+          responseError: handleResponseError
         };
 
-        function setCurrentUser(user) {
-            currentUser = user;
-            store.set('user', user);
-            return currentUser;
-        };
-
-        function getCurrentUser() {
-            if (!currentUser) {
-                currentUser = store.get('user');
-            }
-            return currentUser;
-        };
 
         function addToken(config) {
           var storedToken = angular.fromJson($window.localStorage.getItem('ae.tooltip-editor.token'));
