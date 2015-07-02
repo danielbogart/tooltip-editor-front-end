@@ -67,7 +67,7 @@
           <tr ng-repeat="tooltip in state.tooltips | filter:searchText">
             <td class="col-md-3">{{tooltip.term}}</td>
             <td class="col-md-8">{{tooltip.definition}}</td>
-            <td class="col-md-1"><i class="fa fa-trash-o"></i></td>
+            <td class="col-md-1"><i ng-click="delete(tooltip.id)" class="pointer-link fa fa-trash-o"></i></td>
           </tr>
         </tbody>
       </table>

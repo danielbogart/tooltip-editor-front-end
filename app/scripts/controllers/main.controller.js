@@ -10,16 +10,27 @@
 
     function mainController($scope, $window, $rootScope, Restangular) {
 
-      var stateList;
+      var stateList, tooltipList;
+
       stateList = Restangular.all('states');
+      tooltipList = Restangular.all('tooltips');
 
       function getStateList() {
         stateList.getList().then(function(states) {
-          $scope.states = Restangular.stripRestangular(states);
+          $scope.states = states;
         });
       }
 
       getStateList();
+
+      $scope.delete = function(id){
+        tooltipList.getList().then(function(tooltips) {
+          _.forEach(tooltips, function(tooltip){
+            if (tooltip.id === id) { tooltip.remove(); }
+          });
+          getStateList();
+        });
+      }
 
       $rootScope.$on('newtip', function(event, args) {
         getStateList();

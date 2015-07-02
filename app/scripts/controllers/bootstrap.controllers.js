@@ -1,58 +1,67 @@
-angular.module('tooltipEditorFrontEndApp').controller('ModalDemoCtrl', function ($scope, $modal, $log) {
+(function(){
 
-  $scope.animationsEnabled = true;
+  'use strict';
 
-  $scope.open = function (size) {
+  angular
+    .module('tooltipEditorFrontEndApp')
+    .controller('ModalDemoCtrl', function ($scope, $modal, $log) {
 
-    var modalInstance = $modal.open({
-      animation: $scope.animationsEnabled,
-      templateUrl: 'myModalContent.html',
-      controller: 'ModalInstanceCtrl',
-      size: size,
-      scope: $scope
-    });
+    $scope.animationsEnabled = true;
 
-  };
+    $scope.open = function (size) {
 
-});
+      var modalInstance = $modal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'myModalContent.html',
+        controller: 'ModalInstanceCtrl',
+        size: size,
+        scope: $scope
+      });
 
-// Please note that $modalInstance represents a modal window (instance) dependency.
-// It is not the same as the $modal service used above.
+    };
 
-angular.module('tooltipEditorFrontEndApp').controller('ModalInstanceCtrl', function ($scope, $modalInstance, $window, $rootScope, Restangular, authInterceptor) {
-  // Restangular.setDefaultHeaders({ 'Content-Type': 'application/json' });
+  });
 
-  $scope.newTooltip = { tooltip: {state_name: "", term: "", definition: ""} };
+  // Please note that $modalInstance represents a modal window (instance) dependency.
+  // It is not the same as the $modal service used above.
 
-  $scope.status = {
-    isopen: false
-  };
+  angular
+    .module('tooltipEditorFrontEndApp')
+    .controller('ModalInstanceCtrl', function ($scope, $modalInstance, $window, $rootScope, Restangular, authInterceptor) {
+    // Restangular.setDefaultHeaders({ 'Content-Type': 'application/json' });
 
-  $scope.selectState = function(state) {
-    $scope.newTooltip.tooltip.state_name = state;
-    console.log($scope.newTooltip);
-  };
+    $scope.newTooltip = { tooltip: {state_name: "", term: "", definition: ""} };
 
-  $scope.toggled = function(open) {
-    $log.log('Dropdown is now: ', open);
-  };
+    $scope.status = {
+      isopen: false
+    };
 
-  $scope.toggleDropdown = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.status.isopen = !$scope.status.isopen;
-  };
+    $scope.selectState = function(state) {
+      $scope.newTooltip.tooltip.state_name = state;
+    };
 
-  $scope.ok = function () {
-    console.log($scope.newTooltip);
-    Restangular.all('tooltips').post($scope.newTooltip).then(function(data){
-      $rootScope.$broadcast('newtip');
-    });
-    $modalInstance.close();
-  };
+    $scope.toggled = function(open) {
+      $log.log('Dropdown is now: ', open);
+    };
 
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-});
+    $scope.toggleDropdown = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.status.isopen = !$scope.status.isopen;
+    };
+
+    $scope.ok = function () {
+      console.log($scope.newTooltip);
+      Restangular.all('tooltips').post($scope.newTooltip).then(function(data){
+        $rootScope.$broadcast('newtip');
+      });
+      $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
+  });
+
+})();
 
