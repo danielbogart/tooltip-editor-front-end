@@ -24,11 +24,8 @@
       getStateList();
 
       $scope.delete = function(id){
-        tooltipList.getList().then(function(tooltips) {
-          _.forEach(tooltips, function(tooltip){
-            if (tooltip.id === id) { tooltip.remove(); }
-          });
-          getStateList();
+        Restangular.one("tooltips", id).remove().then(function() {
+            getStateList();
         });
       }
 
