@@ -1,9 +1,11 @@
-<div class="header">
+<div class="header col-md-12">
+  <div class="header-items col-md-8 col-md-offset-2">
     <ul class="nav nav-pills pull-right">
       <li ui-sref-active="active"><a ui-sref="root.main">Home</a></li>
       <li ui-sref-active="active"><a ui-sref="root.about">About</a></li>
       <li ng-if="!loggedIn" ui-sref-active="active"><a ui-sref="root.login">Log In</a></li>
       <li class="pointer-link" ng-if="loggedIn" ui-sref-active="active"><a ng-click="logOut()">Log out</a></li>
     </ul>
-    <h3 class="text-muted">Tooltip Editor</h3>
+    <img src="images/tooltip-bro.png" class="logo" />
+  </div>
 </div>

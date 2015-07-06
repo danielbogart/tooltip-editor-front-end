@@ -12,7 +12,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 /* Space out content a bit */
 body {
-  padding-top: 20px;
+  // padding-top: 20px;
   padding-bottom: 20px;
 }
 
@@ -27,13 +27,13 @@ body {
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
-
+  background-color: rgb(217, 237, 247);
   /* Make the masthead heading the same height as the navigation */
   h3 {
     margin-top: 0;
     margin-bottom: 0;
     line-height: 40px;
-    padding-bottom: 19px;
+    padding-bottom: 10px;
   }
 }
 
@@ -125,6 +125,19 @@ body {
   margin-top: -10px;
   margin-bottom: 24px;
 }
+.header-items {
+  padding: 10px 0px 0px 0px;
+  height: 60px;
+}
+.logo {
+  padding-bottom: 5px;
+  height: 50px;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+  text-decoration: none;
+  background-color: #FFFFFF;
+}
+
 @media (max-width: 535px) {
   .editable-wrap, .editable-wrap > .editable-controls, .editable-wrap > .editable-controls > .editable-input {
     width: 85%;
@@ -140,4 +153,8 @@ body {
     margin-bottom: 10px;
   }
 }
-
+@media (max-width: 450px) {
+  .logo {
+    display: none;
+  }
+}
