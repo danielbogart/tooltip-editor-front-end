@@ -36,6 +36,11 @@
       getTooltipList();
       getStateList();
 
+      $scope.companyCollapsed = true;
+      $scope.drugCollapsed = true;
+      $scope.outcomeCollapsed = true;
+      $scope.portfolioCollapsed = true;
+
       $scope.delete = function(id){
         modalService.showModal({}, modalOptions).then(function (result) {
           Restangular.one("tooltips", id).remove().then(function() {
@@ -50,6 +55,15 @@
         Restangular.one("tooltips", updatedTooltip.id).customPUT(tooltip).then(function() {
           getStateList();
         });
+      }
+
+      $scope.updateSearch = function(module) {
+        $scope.searchState = module;
+      }
+
+      $scope.clearSearch = function() {
+        $scope.searchState = '';
+        $scope.searchText = '';
       }
 
       $rootScope.$on('newtip', function(event, args) {

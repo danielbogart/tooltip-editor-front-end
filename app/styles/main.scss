@@ -71,7 +71,7 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 730px;
+    // max-width: 730px;
   }
   .modal-sm {
     width: 500px;
@@ -99,3 +99,45 @@ body {
 .modal-row {
   margin: 10px 0px 10px 0px;
 }
+.editable-click, a.editable-click {
+  color: black;
+}
+.center-icon {
+  text-align: center;
+}
+.panel-heading {
+  border-radius: 0px;
+}
+.editable-wrap, .editable-wrap > .editable-controls, .editable-wrap > .editable-controls > .editable-input {
+  width: 92%;
+}
+.create-and-search {
+  margin-top: -10px;
+}
+.disabledButton {
+  pointer-events: none;
+  opacity: .6;
+}
+.clear-search-button {
+  margin-left: 20px;
+}
+.navigate-text{
+  margin-top: -10px;
+  margin-bottom: 24px;
+}
+@media (max-width: 535px) {
+  .editable-wrap, .editable-wrap > .editable-controls, .editable-wrap > .editable-controls > .editable-input {
+    width: 85%;
+  }
+}
+@media (max-width: 991px) {
+  .create-and-search {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .navigate-text{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+

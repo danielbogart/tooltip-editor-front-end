@@ -1,9 +1,67 @@
-<div class="col-md-12">
-  <div class="row">
-    <div class="form-group col-md-6">
+<div class="col-md-3">
+
+  <h3 class="navigate-text">Navigate</h3>
+
+  <div class="panel-info">
+    <div class="panel-heading pointer-link" ng-click="companyCollapsed = !companyCollapsed">
+      Company
+    </div>
+  </div>
+  <div collapse="companyCollapsed" ng-repeat="state in states | orderBy:'name' | filter:'company'">
+    <ul>
+      <li><span class="pointer-link" ng-click="updateSearch(state.name)">{{state.name}}</span></li>
+    </ul>
+  </div>
+
+  <div class="panel-info">
+    <div class="panel-heading pointer-link" ng-click="updateSearch('common')">
+      Common
+    </div>
+  </div>
+
+  <div class="panel-info">
+    <div class="panel-heading pointer-link" ng-click="drugCollapsed = !drugCollapsed">
+      Drug
+    </div>
+  </div>
+  <div collapse="drugCollapsed" ng-repeat="state in states | orderBy:'name' | filter:'drugs'">
+    <ul>
+      <li><span class="pointer-link" ng-click="updateSearch(state.name)">{{state.name}}</span></li>
+    </ul>
+  </div>
+
+  <div class="panel-info">
+    <div class="panel-heading pointer-link" ng-click="outcomeCollapsed = !outcomeCollapsed">
+      Outcome
+    </div>
+  </div>
+  <div collapse="outcomeCollapsed" ng-repeat="state in states | orderBy:'name' | filter:'druggroup'">
+    <ul>
+      <li><span class="pointer-link" ng-click="updateSearch(state.name)">{{state.name}}</span></li>
+    </ul>
+  </div>
+
+  <div class="panel-info">
+    <div class="panel-heading pointer-link" ng-click="portfolioCollapsed = !portfolioCollapsed">
+      Portfolio
+    </div>
+  </div>
+  <div collapse="portfolioCollapsed" ng-repeat="state in states | orderBy:'name' | filter:'portfolio'">
+    <ul>
+      <li><span class="pointer-link" ng-click="updateSearch(state.name)">{{state.name}}</span></li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="col-md-9">
+  <div class="row create-and-search">
+    <div class="form-group col-md-4">
       <input class="form-control" placeholder="search tooltip" type="text" ng-model="searchText" />
     </div>
-
+    <div class="form-group col-md-4">
+      <input class="form-control" placeholder="search module" type="text" ng-model="searchState" />
+    </div>
     <!-- create new tooltip modal template -->
     <div ng-controller="ModalDemoCtrl">
       <script type="text/ng-template" id="myModalContent.html">
@@ -26,41 +84,36 @@
                     <input class="form-control" type="text" ng-model="newTooltip.tooltip.term" placeholder="term" required="true" />
                   </div>
                   <div class="modal-row">
-                    <textarea class="form-control" type="password" ng-model="newTooltip.tooltip.definition" placeholder="definition" required="true" />
+                    <textarea class="form-control" type="text" ng-model="newTooltip.tooltip.definition" placeholder="definition" required="true" />
                   </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
-                <button class="btn btn-success" ng-click="ok()">Create</button>
+                <button class="btn btn-success" ng-class="{disabledButton:!newTooltip.tooltip.definition || !newTooltip.tooltip.state_name || !newTooltip.tooltip.term}" ng-click="ok()">Create</button>
             </div>
       </script>
-      <div class="col-md-6">
+      <div class="col-md-4">
         <button class="btn btn-md btn-success" ng-click="open('sm')">Add Tooltip</button>
+        <button class="btn btn-default clear-search-button" ng-click="clearSearch()">Clear Search</button>
       </div>
     </div>
     <!-- modal end -->
 
   </div>
-</div>
-<div class="col-md-12">
-  <div ng-repeat="state in states">
-    <div ng-if="state.tooltips[0]" class="panel panel-primary">
+
+  <div ng-repeat="state in states | orderBy:'name' | filter:searchText | filter:searchState">
+    <div ng-if="state.tooltips[0]" class="panel-primary">
       <!-- Default panel contents -->
-      <div class="panel-heading">{{state.name}} Tooltips</div>
+      <div class="panel-heading">{{state.name}}</div>
 
       <!-- Table -->
       <table class="table">
-        <thead>
-          <th>Term</th>
-          <th>Definition</th>
-          <th></th>
-        </thead>
         <tbody>
-          <tr ng-repeat="tooltip in state.tooltips | filter:searchText">
-            <td class="col-md-3" editable-text="tooltip.term" onaftersave="updateTooltip(tooltip)">{{tooltip.term}}</td>
-            <td class="col-md-8" editable-text="tooltip.definition" onaftersave="updateTooltip(tooltip)">{{tooltip.definition}}</td>
-            <td class="col-md-1"><i ng-click="delete(tooltip.id)" class="pointer-link fa fa-trash-o"></i></td>
+          <tr ng-repeat="tooltip in state.tooltips | filter:searchText | orderBy:'term'">
+            <td class="col-md-3"><span editable-text="tooltip.term" onaftersave="updateTooltip(tooltip)">{{tooltip.term}}</span></td>
+            <td class="col-md-8"><span editable-text="tooltip.definition" data-inputclass="col-md-8" onaftersave="updateTooltip(tooltip)">{{tooltip.definition}}</span></td>
+            <td class="col-md-1 center-icon"><i ng-click="delete(tooltip.id)" class="pointer-link fa fa-trash-o"></i></td>
           </tr>
         </tbody>
       </table>
