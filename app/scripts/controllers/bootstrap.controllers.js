@@ -51,7 +51,6 @@
     };
 
     $scope.ok = function () {
-      console.log($scope.newTooltip);
       Restangular.all('tooltips').post($scope.newTooltip).then(function(data){
         $rootScope.$broadcast('newtip');
       });

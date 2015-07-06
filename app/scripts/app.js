@@ -18,7 +18,8 @@ angular
     'ngTouch',
     'ui.router',
     'restangular',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'xeditable'
   ])
   .config(function($stateProvider, $urlRouterProvider, $windowProvider, RestangularProvider) {
 
@@ -89,9 +90,11 @@ angular
   })
   .run(Run);
 
-    Run.$inject=['$rootScope','$state', 'loggedInService'];
+    Run.$inject=['$rootScope','$state', 'loggedInService', 'editableOptions'];
 
-      function Run($rootScope, $state, loggedInService) {
+      function Run($rootScope, $state, loggedInService, editableOptions) {
+        editableOptions.theme = 'bs3';
+
         $rootScope.$on('$stateChangeStart', function (e, toState) {
 
           if (!(toState.data)) {

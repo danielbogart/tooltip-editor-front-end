@@ -6,11 +6,17 @@
     .module('tooltipEditorFrontEndApp')
     .controller('mainController', mainController);
 
-    mainController.$inject = ['$scope', '$window', '$rootScope', 'Restangular'];
+    mainController.$inject = ['$scope', '$window', '$rootScope', 'Restangular', 'modalService'];
 
-    function mainController($scope, $window, $rootScope, Restangular) {
+    function mainController($scope, $window, $rootScope, Restangular, modalService) {
 
       var stateList, tooltipList;
+      var modalOptions = {
+              closeButtonText: 'Cancel',
+              actionButtonText: 'Delete',
+              headerText: 'Delete Tooltip',
+              bodyText: 'Are you sure you want to delete this tooltip?'
+          };
 
       stateList = Restangular.all('states');
       tooltipList = Restangular.all('tooltips');
@@ -21,11 +27,28 @@
         });
       }
 
+      function getTooltipList() {
+        tooltipList.getList().then(function(tooltips) {
+          $scope.tooltips = tooltips;
+        });
+      }
+
+      getTooltipList();
       getStateList();
 
       $scope.delete = function(id){
-        Restangular.one("tooltips", id).remove().then(function() {
-            getStateList();
+        modalService.showModal({}, modalOptions).then(function (result) {
+          Restangular.one("tooltips", id).remove().then(function() {
+              getStateList();
+          });
+        });
+      }
+
+      $scope.updateTooltip = function(updatedTooltip){
+        var tooltip = {"tooltip": updatedTooltip};
+
+        Restangular.one("tooltips", updatedTooltip.id).customPUT(tooltip).then(function() {
+          getStateList();
         });
       }
 

@@ -4,16 +4,14 @@
       <input class="form-control" placeholder="search tooltip" type="text" ng-model="searchText" />
     </div>
 
-    <!-- modal -->
+    <!-- create new tooltip modal template -->
     <div ng-controller="ModalDemoCtrl">
       <script type="text/ng-template" id="myModalContent.html">
-
           <div class="modal-header">
               <h3 class="modal-title">Create a Tooltip</h3>
           </div>
             <div class="modal-body">
                 <div class="form-group">
-
                   <div class="modal-row">
                     <div class="btn-group" dropdown is-open="status.isopen">
                       <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
@@ -24,21 +22,17 @@
                       </ul>
                     </div>
                   </div>
-
                   <div class="modal-row">
                     <input class="form-control" type="text" ng-model="newTooltip.tooltip.term" placeholder="term" required="true" />
                   </div>
-
                   <div class="modal-row">
                     <textarea class="form-control" type="password" ng-model="newTooltip.tooltip.definition" placeholder="definition" required="true" />
                   </div>
-
                 </div>
             </div>
-
             <div class="modal-footer">
-                <button class="btn btn-success" ng-click="ok()">Create</button>
                 <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+                <button class="btn btn-success" ng-click="ok()">Create</button>
             </div>
       </script>
       <div class="col-md-6">
@@ -49,7 +43,6 @@
 
   </div>
 </div>
-
 <div class="col-md-12">
   <div ng-repeat="state in states">
     <div ng-if="state.tooltips[0]" class="panel panel-primary">
@@ -65,8 +58,8 @@
         </thead>
         <tbody>
           <tr ng-repeat="tooltip in state.tooltips | filter:searchText">
-            <td class="col-md-3">{{tooltip.term}}</td>
-            <td class="col-md-8">{{tooltip.definition}}</td>
+            <td class="col-md-3" editable-text="tooltip.term" onaftersave="updateTooltip(tooltip)">{{tooltip.term}}</td>
+            <td class="col-md-8" editable-text="tooltip.definition" onaftersave="updateTooltip(tooltip)">{{tooltip.definition}}</td>
             <td class="col-md-1"><i ng-click="delete(tooltip.id)" class="pointer-link fa fa-trash-o"></i></td>
           </tr>
         </tbody>
@@ -74,3 +67,21 @@
     </div>
   </div>
 </div>
+
+
+
+<!-- confirm delete modal template -->
+<script type="text/ng-template" id="confirmDeleteModal.html">
+  <div class="modal-header">
+    <h3 class="modal-title">{{modalOptions.headerText}}</h3>
+  </div>
+  <div class="modal-body">
+    <p>{{modalOptions.bodyText}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary"
+            data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+    <button class="btn btn-danger"
+            data-ng-click="modalOptions.ok();">{{modalOptions.actionButtonText}}</button>
+  </div>
+</script>
