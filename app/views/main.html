@@ -7,7 +7,7 @@
       Company
     </div>
   </div>
-  <div collapse="companyCollapsed" ng-repeat="state in states | orderBy:'name' | filter:'company'">
+  <div class="navigate-option" collapse="companyCollapsed" ng-repeat="state in states | orderBy:'name' | filter:'company'">
     <ul>
       <li><span class="pointer-link" ng-click="updateSearch(state.name)">{{state.name}}</span></li>
     </ul>
@@ -24,7 +24,7 @@
       Drug
     </div>
   </div>
-  <div collapse="drugCollapsed" ng-repeat="state in states | orderBy:'name' | filter:'drugs'">
+  <div class="navigate-option" collapse="drugCollapsed" ng-repeat="state in states | orderBy:'name' | filter:'drugs'">
     <ul>
       <li><span class="pointer-link" ng-click="updateSearch(state.name)">{{state.name}}</span></li>
     </ul>
@@ -35,7 +35,7 @@
       Outcome
     </div>
   </div>
-  <div collapse="outcomeCollapsed" ng-repeat="state in states | orderBy:'name' | filter:'druggroup'">
+  <div class="navigate-option" collapse="outcomeCollapsed" ng-repeat="state in states | orderBy:'name' | filter:'druggroup'">
     <ul>
       <li><span class="pointer-link" ng-click="updateSearch(state.name)">{{state.name}}</span></li>
     </ul>
@@ -46,7 +46,7 @@
       Portfolio
     </div>
   </div>
-  <div collapse="portfolioCollapsed" ng-repeat="state in states | orderBy:'name' | filter:'portfolio'">
+  <div class="navigate-option" collapse="portfolioCollapsed" ng-repeat="state in states | orderBy:'name' | filter:'portfolio'">
     <ul>
       <li><span class="pointer-link" ng-click="updateSearch(state.name)">{{state.name}}</span></li>
     </ul>

@@ -12,8 +12,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 /* Space out content a bit */
 body {
-  // padding-top: 20px;
-  padding-bottom: 20px;
+
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -137,7 +136,18 @@ body {
   text-decoration: none;
   background-color: #FFFFFF;
 }
-
+.login-body {
+  padding: 25px;
+}
+.content-container {
+  min-height: 93vh;
+}
+.footer-text{
+  margin-bottom: 20px;
+}
+.navigate-option li:first-child {
+  margin-top: 7px;
+}
 @media (max-width: 535px) {
   .editable-wrap, .editable-wrap > .editable-controls, .editable-wrap > .editable-controls > .editable-input {
     width: 85%;
@@ -156,5 +166,10 @@ body {
 @media (max-width: 450px) {
   .logo {
     display: none;
+  }
+}
+@media (max-width: 767px) {
+  .login-container {
+    margin-top: 30px;
   }
 }
