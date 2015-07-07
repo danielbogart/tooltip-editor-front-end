@@ -77,7 +77,7 @@ angular
       }
     });
 
-    RestangularProvider.setBaseUrl('http://localhost:3000');
+    RestangularProvider.setBaseUrl('http://dev.adverseevents.io/tooltip');
 
     RestangularProvider.setRequestInterceptor(function(elem, operation, what) {
 
