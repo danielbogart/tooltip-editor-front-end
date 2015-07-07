@@ -148,6 +148,11 @@ body {
 .navigate-option li:first-child {
   margin-top: 7px;
 }
+#screenshot {
+  width: 100%;
+  border: 1px solid rgba(128, 128, 128, 0.28);
+  border-radius: 5px;
+}
 @media (max-width: 535px) {
   .editable-wrap, .editable-wrap > .editable-controls, .editable-wrap > .editable-controls > .editable-input {
     width: 85%;
