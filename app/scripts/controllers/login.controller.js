@@ -13,7 +13,7 @@
       $scope.submit = function() {
         // authenticate
         Restangular.setDefaultHeaders({ 'Authorization': 'Basic ' +btoa($scope.username+':'+$scope.password) });
-        Restangular.oneUrl('token', 'http://localhost:3000/token').get().then(function(token){
+        Restangular.oneUrl('token', 'http://dev.adverseevents.io/tooltip/token').get().then(function(token){
 
           var getToken = $window.localStorage.getItem('ae.tooltip-editor.token');
 
