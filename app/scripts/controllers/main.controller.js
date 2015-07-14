@@ -53,7 +53,7 @@
         var tooltip = {"tooltip": updatedTooltip};
 
         Restangular.one("tooltips", updatedTooltip.id).customPUT(tooltip).then(function() {
-          getStateList();
+          //getStateList();
         });
       }
 
